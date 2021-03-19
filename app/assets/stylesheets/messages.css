@@ -155,3 +155,18 @@
 .hidden {
   display: none;
 }
+
+.delete-btn {
+  padding-left: 10px;
+}
+
+.delete-btn a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.delete-btn a:hover {
+  color: #38AEF0;
+  text-decoration: underline;
+}

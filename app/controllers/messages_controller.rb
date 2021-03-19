@@ -1,12 +1,12 @@
 class MessagesController < ApplicationController
+before_action :get_room, only: [:index, :create, :destroy]
+
   def index
     @message = Message.new
-    @room = Room.find(params[:room_id])
     get_messages
   end
 
   def create
-    @room = Room.find(params[:room_id])
     @message = @room.messages.new(messages_params)
     if @message.save
       redirect_to room_messages_path(@room)
@@ -14,6 +14,12 @@ class MessagesController < ApplicationController
       get_messages
       render :index
     end
+  end
+
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy
+    redirect_to room_messages_path(@room)
   end
 
   private
@@ -24,5 +30,9 @@ class MessagesController < ApplicationController
 
   def get_messages
     @messages = @room.messages.includes(:user)
+  end
+
+  def get_room
+    @room = Room.find(params[:room_id])
   end
 end
