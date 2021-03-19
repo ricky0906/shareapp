@@ -6,6 +6,11 @@
     <div class="message-date">
       <%= l message.created_at %>
     </div>
+    <div class="delete-btn">
+      <% if user_signed_in? && current_user.id == message.user_id %>
+          <%= link_to '削除', room_message_path(@room, message.id), method: :delete %>
+      <% end %>
+    </div>
   </div>
   <div class="lower-message">
     <div class="message-content">
