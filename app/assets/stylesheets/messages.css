@@ -23,14 +23,6 @@
   text-decoration: none;
 }
 
-.create-room a {
-  font-size: 10px;
-  border: 1px solid lightblue;
-  padding: 14px;
-  color: deepskyblue;
-  text-decoration: none;
-}
-
 .rooms {
   background-color: #2f3e51;
   height: calc(100vh - 100px);
