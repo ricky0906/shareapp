@@ -1,19 +1,15 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_message
 
   def create
-    if @messaage.user_id != current_user.id
-      @favorite = Favorite.create(user_id: current_user.id, message_id: @message.id)
-    end
+    favorite = current_user.favorites.build(message_id: params[:message_id])
+    favorite.save
+    redirect_to room_messages_path
   end
 
   def destroy
-    @favorite = Favorite.find_by(user_id: current_user.id, message_id: @message.id)
-    @favorite.destroy
-  end
-  private
-  def set_message
-    @message = Message.find(params[:id])
+    favorite = Favorite.find_by(message_id: params[:message_id], user_id: current_user.id)
+    favorite.destroy
+    redirect_to room_messages_path
   end
 end

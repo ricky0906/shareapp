@@ -112,3 +112,16 @@
   padding: 0;
   font-size: 13px;
 }
+.messages {
+  margin-top: 10px;
+}
+.message {
+  margin: 20px 0;
+}
+.account-page__inner--right h4:after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  border-bottom:1px solid #38aef0 ;
+  width: 120px;
+}

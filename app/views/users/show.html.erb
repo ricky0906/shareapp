@@ -1,0 +1,33 @@
+<div class='account-page' id='account-page'>
+  <div class='account-page__inner clearfix'>
+    <div class='account-page__inner--left account-page__header'>
+      <h2>My Account</h2>
+      <h4><b><%= current_user.nickname %></b>のマイページ</h4>
+      <%= link_to "アカウント編集", edit_user_path(current_user), class: 'btn' %>
+      <%= link_to "チャットページに戻る", root_path, class: 'btn' %>
+    </div>
+    <div class='account-page__inner--right user-form'>
+      <h4><b>My Favorites</b></h4>
+      <div class='messages'>
+        <% @favorite_messages.each do |message|  %>
+          <div class='message'>
+            <div class='upper-message'>
+              <div class='message-user'>
+                <%= message.user.nickname %>
+              </div>
+              <div class='message-date'>
+                <%= l message.created_at %>
+              </div>
+            </div>
+            <div class='lower-message'>
+              <div class='message-content'>
+                <%= message.content %>
+              </div>
+              <%= image_tag message.image.variant(resize: '250x250'), class: 'message-image' if message.image.attached? %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

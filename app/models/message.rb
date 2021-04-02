@@ -9,4 +9,8 @@ class Message < ApplicationRecord
   def was_attached?
     self.image.attached?
   end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 end

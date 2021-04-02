@@ -162,3 +162,7 @@
   color: #38AEF0;
   text-decoration: underline;
 }
+
+.favorite-btn {
+  margin: 10px 0;
+}

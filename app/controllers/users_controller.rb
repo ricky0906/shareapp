@@ -3,11 +3,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @messages = @user.messages
-    
-    favorites = Favorite.where(user_id: current_user.id).pluck(:message_id)
-    @favorite_list = Message.find(favorites)
+   @user = User.find(params[:id])
+   @messages = @user.messages
+   @favorite_messages = @user.favorite_messages
   end
 
   def update

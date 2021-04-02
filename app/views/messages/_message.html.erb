@@ -18,4 +18,15 @@
     </div>
     <%= image_tag message.image.variant(resize: '500x500'), class: 'message-image' if message.image.attached? %>
   </div>
+  <div class="favorite-btn">
+    <% if user_signed_in? %>
+      <% if message.favorited_by?(current_user) %>
+        <p><span>お気に入り解除: </span><%= link_to message.favorites.count, room_message_favorites_path(@room, message.id), method: :delete %></p>
+      <% else %>
+        <p><span>お気に入り登録: </span><%= link_to message.favorites.count, room_message_favorites_path(@room, message.id), method: :post %></p>
+      <% end %>
+    <% else %>
+      <p><span>お気に入り数: </span><%= message.favorites.count %></p>
+    <% end %>
+  </div>
 </div>
