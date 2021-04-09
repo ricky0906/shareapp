@@ -21,9 +21,13 @@
   <div class="favorite-btn">
     <% if user_signed_in? %>
       <% if message.favorited_by?(current_user) %>
-        <p><span>お気に入り解除: </span><%= link_to message.favorites.count, room_message_favorites_path(@room, message.id), method: :delete %></p>
+        <%= link_to room_message_favorites_path(@room, message.id), method: :delete do %>
+          <i class="far fa-heart unlike-btn"></i>
+        <% end %>
       <% else %>
-        <p><span>お気に入り登録: </span><%= link_to message.favorites.count, room_message_favorites_path(@room, message.id), method: :post %></p>
+        <%= link_to room_message_favorites_path(@room, message.id), method: :post do %>
+          <i class="far fa-heart like-btn"></i>
+        <% end %>
       <% end %>
     <% else %>
       <p><span>お気に入り数: </span><%= message.favorites.count %></p>
