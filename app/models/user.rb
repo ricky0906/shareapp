@@ -17,4 +17,6 @@ class User < ApplicationRecord
   end
 
   has_many :messages
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_messages, through: :favorites, source: :message
 end
