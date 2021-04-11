@@ -2,15 +2,15 @@
   <div class='account-page__inner clearfix'>
     <div class='account-page__inner--left account-page__header'>
       <h2>My Account</h2>
-      <h4><b><%= current_user.nickname %></b>のマイページ</h4>
+      <h4><b><%= current_user.nickname %></b>のお気に入り</h4>
       <%= link_to "アカウント編集", edit_user_path(current_user), class: 'btn' %>
       <%= link_to "チャットページに戻る", root_path, class: 'btn' %>
-      <%= link_to "お気に入りを見る", favorite_path, class: 'btn' %>
+      <%= link_to "自分のメッセージを見る", user_path(current_user), class: 'btn' %>
     </div>
     <div class='account-page__inner--right user-form'>
-      <h4><b>My Messages</b></h4>
+      <h4><b>My Favorites</b></h4>
       <div class='messages'>
-        <% @messages.each do |message|  %>
+        <% @favorite_messages.each do |message|  %>
           <div class='message'>
             <div class='upper-message'>
               <div class='message-user'>

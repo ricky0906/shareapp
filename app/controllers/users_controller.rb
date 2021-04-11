@@ -3,9 +3,7 @@ class UsersController < ApplicationController
   end
 
   def show
-   @user = User.find(params[:id])
-   @messages = @user.messages
-   @favorite_messages = @user.favorite_messages
+    @messages = current_user.messages
   end
 
   def update
