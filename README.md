@@ -18,6 +18,8 @@ https://infomation-app.herokuapp.com/
 - パスワード: test12345
 - ユーザー名: test
 
+※ 画像ファイル指定の際jpegファイルを使用
+
 - Githubリポジトリ
 https://github.com/ricky0906/shareapp
 
