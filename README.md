@@ -6,6 +6,7 @@ Shareapp
 - アカウントの登録、編集
 - メッセージの送信、画像の送信
 - ログイン、ログアウト
+- メッセージのお気に入り登録
 
 # 本番環境
 
@@ -47,13 +48,14 @@ https://github.com/ricky0906/shareapp
 始めはroomテーブルにcreateを使って必要なチャットルームを保存していたが、本番環境にデプロイするとその情報は反映されていないことに気がついた。
 - 画像を選択するとプレビューを表示する機能を実装した
 画像選択した際に自分がなんの画像を選択しているのかわかりやすくするため
-
+- favoritesテーブルを作成しuser_idとmessage_idでどのユーザーがどのメッセージをお気に入りにしているかを管理した。
+お気に入りにしたメッセージをマイページで閲覧できるようにページを追加した。
 # 使用技術(開発環境)
 Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code
 
 # 課題や今後開発したい機能
 - 見た目がシンプルすぎるのでそれぞれのメモの印象が薄く、飛ばされてしまう可能性があるので、メッセージの見た目を印象強くする。
-- メモの保存をできるようにする。
+- メモの保存をできるようにする。（機能追加済み）
 商品の情報や大事な店舗情報等をあとで見返すことができるようにするため
 - それぞれのルームでさらに商品の情報と在庫の状況で、ルームを分ける
 メモが多くなってきた時に、更に知りたい情報を分割することで、ピンポイントで情報を検索できるようにするため
@@ -74,6 +76,8 @@ Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code
 
 ### associations
 - has_many :messages
+- has_many :favorites, dependent: :destroy
+- has_many :favorite_messages, through: :favorites, source: :message
 
 ## roomsテーブル
 
@@ -95,3 +99,15 @@ Ruby/Ruby on Rails/MySQL/Github/AWS/Visual Studio Code
 ### associations
 - belongs_to :user
 - belongs_to :message
+- has_many :favorites, dependent: :destroy
+
+## favoritesテーブル
+
+| column  |   type     | options                        |
+| ------- | ---------- | ------------------------------ |
+| message | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
+
+### associations
+- belongs_to :message
+- belongs_to :user
