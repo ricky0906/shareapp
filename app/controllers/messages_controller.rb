@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-before_action :get_room, only: [:index, :create, :destroy]
+  before_action :get_room, only: [:index, :create, :destroy]
 
   def index
     @message = Message.new
